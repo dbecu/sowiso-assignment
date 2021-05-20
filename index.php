@@ -2,6 +2,7 @@
 session_start();
 $_SESSION["status"] = "new";
 
+
 // Deciding the status of the answer
 if (isset($_POST['submit']) && !empty($_POST['answer'])) 
 {
@@ -21,6 +22,15 @@ if (isset($_POST['submit']) && !empty($_POST['answer']))
         {
             // echo "goo?d job!";
             $_SESSION["status"] = "correct";
+
+            if (isset($_SESSION["good-ans"]))
+            {
+                $_SESSION["good-ans"] = $_SESSION["good-ans"] + 1;
+            }
+            else
+            {
+                $_SESSION["good-ans"] = 0;
+            }
         }
         else
         {
@@ -110,6 +120,7 @@ if(isset($_POST['next'])) $_SESSION["status"] = "new";
   <div class="jumbotron text-center">
     <h1>SOWISO application</h1>
     <p>Maths n stuff</p>
+    <p>Correct answers: <?php echo $_SESSION["good-ans"]?></p>
   </div>
   <!-- header end -->
 
