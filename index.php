@@ -1,7 +1,13 @@
 <?php
 session_start();
-$_SESSION["status"] = "new";
 
+if (isset($_POST['restart'])) 
+{
+    $_SESSION["good-ans"] = 0;
+
+}
+
+$_SESSION["status"] = "new";
 
 // Deciding the status of the answer
 if (isset($_POST['submit']) && !empty($_POST['answer'])) 
@@ -121,6 +127,7 @@ if(isset($_POST['next'])) $_SESSION["status"] = "new";
     <h1>SOWISO application</h1>
     <p>Maths</p>
     <p>Correct answers: <?php echo $_SESSION["good-ans"]?></p>
+    <p>Difficulty increases as you get more correct answers :)</p>
   </div>
   <!-- header end -->
 
@@ -191,8 +198,10 @@ if(isset($_POST['next'])) $_SESSION["status"] = "new";
         }
         else
         {
-            $num1 = rand(1, 5);
-            $num2 = rand(1, 5);
+            $correctAnswersCount = $_SESSION["good-ans"];
+
+            $num1 = rand(1 + $correctAnswersCount, 10 + $correctAnswersCount * 10);
+            $num2 = rand(1 + $correctAnswersCount, 10 + $correctAnswersCount * 10);
         }
  
 
@@ -235,6 +244,10 @@ if(isset($_POST['next'])) $_SESSION["status"] = "new";
         <!-- To go to other equations -->
         <form class="form-horizontal" action="" method="post">
             <input type="submit" value="Yes" name="next">
+        </form>
+
+        <form class="form-horizontal" action="" method="post">
+            <input type="submit" value="Restart Session" name="restart">
         </form>
 
       </div>
