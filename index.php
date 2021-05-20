@@ -124,7 +124,7 @@ if(isset($_POST['next'])) $_SESSION["status"] = "new";
 
   <!-- header start -->
   <div class="jumbotron text-center">
-    <h1>SOWISO application</h1>
+    <h1>SOWISO assignment</h1>
     <p>Maths</p>
     <p>Correct answers: <?php echo $_SESSION["good-ans"]?></p>
     <p>Difficulty increases as you get more correct answers :)</p>
